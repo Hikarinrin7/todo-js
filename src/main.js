@@ -7,7 +7,12 @@ const onClickAdd = () => {
     const inputText = document.getElementById("add-text").value;
     // 値を取得したら、テキストボックスは空にする
     document.getElementById("add-text").value = "";
+    createIncompleteTodo(inputText);
+}
 
+
+// 渡された引数を元に未完了のtodoを作成する関数
+const createIncompleteTodo = (todo) => {
     // DOM生成
     // まずli生成
     const li = document.createElement("li");
@@ -17,7 +22,7 @@ const onClickAdd = () => {
     // pタグ（todoの内容）も生成！innerTextで中身を指定
     const p = document.createElement("p");
     p.className = "todo-item";
-    p.innerText = inputText;
+    p.innerText = todo;
 
     // 完了ボタン生成&押した時の処理
     const completebutton = document.createElement("button");
@@ -37,8 +42,6 @@ const onClickAdd = () => {
         moveTarget.firstElementChild.appendChild(backButton);
         // 完了リストに移動！
         document.getElementById("complete-list").appendChild(moveTarget);
-        
-        backButton.addEventListener("click", ()=>{});
     });
 
     // 削除ボタン生成&押した時の処理
@@ -69,7 +72,8 @@ const onClickAdd = () => {
     // console.log(deletebutton);
     // // 確認用のalert
     // alert(onClickAdd);
-}
+};
+
 
 // 追加ボタンの機能
 // documentの中にあるメソッド、getElementById（エレメントをidによって取得）
