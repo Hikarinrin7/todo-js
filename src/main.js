@@ -18,12 +18,29 @@ const onClickAdd = () => {
     const p = document.createElement("p");
     p.className = "todo-item";
     p.innerText = inputText;
+
     // 完了ボタン生成&押した時の処理
     const completebutton = document.createElement("button");
     completebutton.innerText = "完了";
     completebutton.addEventListener("click", ()=>{
-        alert("完了");
-    })
+        // moveTargetを取得（li要素）
+        const moveTarget = completebutton.closest("li");
+        // 削除ボタンを消す。「このボタンの次のボタン」を消す
+        completebutton.nextElementSibling.remove();
+        // 完了ボタンも消す。
+        completebutton.remove();
+
+        // 戻すボタンを生成！
+        const backButton = document.createElement("button");
+        backButton.innerText = "戻す";
+        // divタグ配下に戻すボタンを設定。もう完了ボタンがないので工夫が必要、moveTargetの子供としてdivを指定
+        moveTarget.firstElementChild.appendChild(backButton);
+        // 完了リストに移動！
+        document.getElementById("complete-list").appendChild(moveTarget);
+        
+        backButton.addEventListener("click", ()=>{});
+    });
+
     // 削除ボタン生成&押した時の処理
     const deletebutton = document.createElement("button");
     deletebutton.innerText = "削除";
