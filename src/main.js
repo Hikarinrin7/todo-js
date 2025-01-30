@@ -17,20 +17,20 @@ const onClickAdd = () => {
     // pタグ（todoの内容）も生成！innerTextで中身を指定
     const p = document.createElement("p");
     p.className = "todo-item";
-    p.innerText = "inputText";
+    p.innerText = inputText;
 
     // 生成した要素の階層構造を作る
     // divの配下にpをおく！という指示
     div.appendChild(p);
     // 同様に、liの配下にdivをおく
     li.appendChild(div);
+    // 最後に、ul要素の配下にliをおくことで、未完了リストに追加
+    document.getElementById("incomplete-list").appendChild(li);
 
-
-    console.log(li); // これで確認する
-
-
-    // 確認用のalert
-    alert(onClickAdd);
+    // // これで確認する
+    // console.log(li);
+    // // 確認用のalert
+    // alert(onClickAdd);
 }
 
 // documentの中にあるメソッド（エレメントをidによって取得）
