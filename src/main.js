@@ -28,10 +28,14 @@ const onClickAdd = () => {
     const deletebutton = document.createElement("button");
     deletebutton.innerText = "削除";
     deletebutton.addEventListener("click", ()=>{
-        alert("削除");
+        // liタグを未完了リストから削除
+        // 押された削除ボタンを起点にclosest（一番近い）liを探し、
+        // 削除する要素deleteTargetとする
+        const deleteTarget = deletebutton.closest("li");
+        // ulタグの子供からdeleteTargetを消す、removeChild
+        document.getElementById("incomplete-list").removeChild(deleteTarget);
     })
-    // 完了・削除ボタンは追加ボタンと違ってこちらで定義してDOM生成しているので、
-    // html側にid設定して…とかじゃなくここでやっちゃう
+
 
     // 生成した要素の階層構造を作る
     // divの配下にpとボタンをおく！という指示
